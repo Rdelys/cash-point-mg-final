@@ -2,7 +2,7 @@
   "expo": {
     "name": "cash-point-mg",
     "slug": "cash-point-mg",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,10 +20,16 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.dauphinapkcash.cashpointmg"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d21e30b4-9f58-4880-87fc-c55b8905af3d"
+      }
     }
   }
 }
