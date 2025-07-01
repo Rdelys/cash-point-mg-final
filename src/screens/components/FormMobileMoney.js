@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Picker, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Picker } from '@react-native-picker/picker'; // ✅
 
 export default function FormMobileMoney({ title }) {
   const [type, setType] = useState('Dépôt');
@@ -19,14 +20,7 @@ export default function FormMobileMoney({ title }) {
     }
 
     const newData = {
-      title,
-      type,
-      name,
-      phone,
-      amount,
-      commission,
-      reference,
-      date: currentDate,
+      title, type, name, phone, amount, commission, reference, date: currentDate,
     };
 
     try {
@@ -38,7 +32,6 @@ export default function FormMobileMoney({ title }) {
       setMessage('✅ Transaction ajoutée avec succès.');
       console.log('Transaction enregistrée :', newData);
 
-      // Reset
       setName('');
       setPhone('');
       setAmount('');
@@ -87,58 +80,13 @@ export default function FormMobileMoney({ title }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#111',
-    padding: 20,
-  },
-  title: {
-    color: '#00ffcc',
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  date: {
-    color: '#ccc',
-    fontSize: 16,
-    marginBottom: 20,
-  },
-  label: {
-    color: '#fff',
-    marginTop: 10,
-    fontSize: 14,
-  },
-  input: {
-    backgroundColor: '#222',
-    color: '#fff',
-    padding: 10,
-    borderRadius: 10,
-    marginTop: 5,
-  },
-  inputSmall: {
-    backgroundColor: '#222',
-    color: '#fff',
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    fontSize: 14,
-    borderRadius: 8,
-    marginTop: 5,
-  },
-  button: {
-    marginTop: 20,
-    backgroundColor: '#00ffcc',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#111',
-    fontWeight: 'bold',
-  },
-  message: {
-    marginTop: 15,
-    color: '#0f0',
-    fontSize: 14,
-    textAlign: 'center',
-  },
+  container: { flex: 1, backgroundColor: '#111', padding: 20 },
+  title: { color: '#00ffcc', fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
+  date: { color: '#ccc', fontSize: 16, marginBottom: 20 },
+  label: { color: '#fff', marginTop: 10, fontSize: 14 },
+  input: { backgroundColor: '#222', color: '#fff', borderRadius: 10, marginTop: 5 },
+  inputSmall: { backgroundColor: '#222', color: '#fff', paddingVertical: 6, paddingHorizontal: 10, fontSize: 14, borderRadius: 8, marginTop: 5 },
+  button: { marginTop: 20, backgroundColor: '#00ffcc', padding: 15, borderRadius: 10, alignItems: 'center' },
+  buttonText: { color: '#111', fontWeight: 'bold' },
+  message: { marginTop: 15, color: '#0f0', fontSize: 14, textAlign: 'center' },
 });

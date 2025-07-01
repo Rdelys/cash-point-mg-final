@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "cash-point-mg",
+    "name": "CASH POINT MG",
     "slug": "cash-point-mg",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -28,8 +28,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "d21e30b4-9f58-4880-87fc-c55b8905af3d"
+        "projectId": "5bd2702d-da8b-49d9-930f-398185f38182"
       }
-    }
+    },
+    "owner": "nocodedauphin"
   }
 }

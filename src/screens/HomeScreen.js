@@ -186,7 +186,7 @@ function DashboardView() {
         </View>
       ))}
 
-      <Text style={styles.sectionTitle}>💳 Crédits</Text>
+      {/*<Text style={styles.sectionTitle}>💳 Crédits</Text>
       {creditData.length > 0 ? (
         creditData.map((credit, idx) => (
           <View key={idx} style={styles.transaction}>
@@ -197,7 +197,7 @@ function DashboardView() {
         ))
       ) : (
         <Text style={styles.txDetail}>Aucun crédit enregistré pour cette date.</Text>
-      )}
+      )}*/}
     </ScrollView>
   );
 }

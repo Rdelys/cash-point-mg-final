@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Picker, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Picker } from '@react-native-picker/picker'; // ✅ CORRECT
 
 export default function FormCredit({ title }) {
   const [amount, setAmount] = useState('1000');
@@ -9,12 +10,7 @@ export default function FormCredit({ title }) {
   const currentDate = new Date().toLocaleDateString();
 
   const handleSubmit = async () => {
-    const newData = {
-      title,
-      amount,
-      duration,
-      date: currentDate,
-    };
+    const newData = { title, amount, duration, date: currentDate };
 
     try {
       const existing = await AsyncStorage.getItem('credits');
@@ -25,7 +21,6 @@ export default function FormCredit({ title }) {
       setMessage('✅ Crédit ajouté avec succès.');
       console.log('Crédit enregistré :', newData);
 
-      // Reset
       setAmount('1000');
       setDuration('1');
     } catch (error) {
@@ -63,48 +58,12 @@ export default function FormCredit({ title }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#111',
-    padding: 20,
-  },
-  title: {
-    color: '#00ffcc',
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  date: {
-    color: '#ccc',
-    fontSize: 16,
-    marginBottom: 20,
-  },
-  label: {
-    color: '#fff',
-    marginTop: 10,
-  },
-  input: {
-    backgroundColor: '#222',
-    color: '#fff',
-    padding: 10,
-    borderRadius: 10,
-    marginTop: 5,
-  },
-  button: {
-    marginTop: 20,
-    backgroundColor: '#00ffcc',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#111',
-    fontWeight: 'bold',
-  },
-  message: {
-    marginTop: 15,
-    color: '#0f0',
-    fontSize: 14,
-    textAlign: 'center',
-  },
+  container: { flex: 1, backgroundColor: '#111', padding: 20 },
+  title: { color: '#00ffcc', fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
+  date: { color: '#ccc', fontSize: 16, marginBottom: 20 },
+  label: { color: '#fff', marginTop: 10 },
+  input: { backgroundColor: '#222', color: '#fff', borderRadius: 10, marginTop: 5 },
+  button: { marginTop: 20, backgroundColor: '#00ffcc', padding: 15, borderRadius: 10, alignItems: 'center' },
+  buttonText: { color: '#111', fontWeight: 'bold' },
+  message: { marginTop: 15, color: '#0f0', fontSize: 14, textAlign: 'center' },
 });
