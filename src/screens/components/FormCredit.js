@@ -7,6 +7,7 @@ import {
   Modal,
   TextInput,
   Alert,
+  ScrollView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Picker } from '@react-native-picker/picker';
@@ -105,7 +106,7 @@ export default function FormCredit({ title }) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 30 }}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.date}>📅 {currentDate}</Text>
       <Text style={styles.credit}>💳 Disponible : {disponible} Ar</Text>
@@ -122,6 +123,7 @@ export default function FormCredit({ title }) {
         selectedValue={amount}
         onValueChange={setAmount}
         style={styles.input}
+        itemStyle={{ fontSize: 12 }}
       >
         {['1000', '2000', '3000', '5000', '10000'].map((val) => (
           <Picker.Item key={val} label={val} value={val} />
@@ -133,6 +135,7 @@ export default function FormCredit({ title }) {
         selectedValue={duration}
         onValueChange={setDuration}
         style={styles.input}
+        itemStyle={{ fontSize: 12 }}
       >
         {[...Array(10)].map((_, i) => (
           <Picker.Item key={i} label={`${i + 1}`} value={`${i + 1}`} />
@@ -181,39 +184,46 @@ export default function FormCredit({ title }) {
           </View>
         </View>
       </Modal>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#111', padding: 20 },
-  title: { color: '#00ffcc', fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
-  date: { color: '#ccc', fontSize: 16, marginBottom: 10 },
-  credit: { color: '#00ffcc', fontSize: 16, marginBottom: 20 },
-  label: { color: '#fff', marginTop: 10 },
-  input: { backgroundColor: '#222', color: '#fff', borderRadius: 10, marginTop: 5 },
+  container: { flex: 1, backgroundColor: '#111', padding: 15 },
+  title: { color: '#00ffcc', fontSize: 18, fontWeight: 'bold', marginBottom: 8 },
+  date: { color: '#ccc', fontSize: 14, marginBottom: 8 },
+  credit: { color: '#00ffcc', fontSize: 14, marginBottom: 15 },
+  label: { color: '#fff', marginTop: 8, fontSize: 12 },
+  input: {
+    backgroundColor: '#222',
+    color: '#fff',
+    borderRadius: 8,
+    marginTop: 5,
+    height: 35,
+    fontSize: 12,
+  },
   button: {
-    marginTop: 20,
+    marginTop: 15,
     backgroundColor: '#00ffcc',
-    padding: 15,
-    borderRadius: 10,
+    paddingVertical: 10,
+    borderRadius: 8,
     alignItems: 'center',
   },
   disabledButton: {
     backgroundColor: '#555',
   },
-  buttonText: { color: '#111', fontWeight: 'bold' },
-  message: { marginTop: 15, color: '#0f0', fontSize: 14, textAlign: 'center' },
+  buttonText: { color: '#111', fontWeight: 'bold', fontSize: 14 },
+  message: { marginTop: 12, color: '#0f0', fontSize: 12, textAlign: 'center' },
   rechargeButton: {
-    marginBottom: 10,
+    marginBottom: 8,
     backgroundColor: '#444',
-    padding: 10,
-    borderRadius: 10,
+    paddingVertical: 7,
+    borderRadius: 8,
     alignItems: 'center',
   },
   rechargeText: {
     color: '#00ffcc',
-    fontSize: 14,
+    fontSize: 12,
   },
   modalOverlay: {
     flex: 1,
@@ -223,16 +233,17 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#222',
-    padding: 20,
+    padding: 15,
     borderRadius: 10,
     width: '80%',
   },
   modalInput: {
     backgroundColor: '#333',
     color: '#fff',
-    borderRadius: 10,
-    padding: 10,
+    borderRadius: 8,
+    padding: 8,
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 15,
+    fontSize: 12,
   },
 });

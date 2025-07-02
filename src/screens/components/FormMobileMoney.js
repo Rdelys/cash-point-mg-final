@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+  ScrollView,
   View,
   Text,
   TextInput,
@@ -27,14 +28,15 @@ export default function FormMobileMoney({ title }) {
   const [modalType, setModalType] = useState('Dépôt');
 
   const currentDate = new Date().toLocaleDateString();
-const getServiceKey = () => {
-  if (title.includes('Airtel')) return 'airtel';
-  if (title.toLowerCase().includes('mvola')) return 'mvola';
-  if (title.toLowerCase().includes('orange')) return 'orange';
-  return 'inconnu';
-};
 
-const storageKey = `solde_${getServiceKey()}`;
+  const getServiceKey = () => {
+    if (title.includes('Airtel')) return 'airtel';
+    if (title.toLowerCase().includes('mvola')) return 'mvola';
+    if (title.toLowerCase().includes('orange')) return 'orange';
+    return 'inconnu';
+  };
+
+  const storageKey = `solde_${getServiceKey()}`;
 
   useEffect(() => {
     loadSolde();
@@ -162,7 +164,7 @@ const storageKey = `solde_${getServiceKey()}`;
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 30 }}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.date}>📅 {currentDate}</Text>
       <Text style={styles.solde}>💳 Solde disponible : {soldeDisponible} Ar</Text>
@@ -280,46 +282,46 @@ const storageKey = `solde_${getServiceKey()}`;
           </View>
         </View>
       </Modal>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#111', padding: 20 },
-  title: { color: '#00ffcc', fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
-  date: { color: '#ccc', fontSize: 16, marginBottom: 10 },
-  solde: { color: '#00ffcc', fontSize: 16, marginBottom: 20 },
+  container: { flex: 1, backgroundColor: '#111', padding: 15 },
+  title: { color: '#00ffcc', fontSize: 18, fontWeight: 'bold', marginBottom: 8 },
+  date: { color: '#ccc', fontSize: 14, marginBottom: 8 },
+  solde: { color: '#00ffcc', fontSize: 14, marginBottom: 15 },
   soldeButton: {
     backgroundColor: '#444',
-    padding: 10,
-    borderRadius: 10,
+    paddingVertical: 7,
+    borderRadius: 8,
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   soldeButtonText: {
     color: '#00ffcc',
-    fontSize: 14,
+    fontSize: 12,
   },
-  label: { color: '#fff', marginTop: 10, fontSize: 14 },
-  input: { backgroundColor: '#222', color: '#fff', borderRadius: 10, marginTop: 5 },
+  label: { color: '#fff', marginTop: 8, fontSize: 12 },
+  input: { backgroundColor: '#222', color: '#fff', borderRadius: 8, marginTop: 5, height: 35, fontSize: 12 },
   inputSmall: {
     backgroundColor: '#222',
     color: '#fff',
     paddingVertical: 6,
     paddingHorizontal: 10,
-    fontSize: 14,
+    fontSize: 12,
     borderRadius: 8,
     marginTop: 5,
   },
   button: {
-    marginTop: 20,
+    marginTop: 15,
     backgroundColor: '#00ffcc',
-    padding: 15,
-    borderRadius: 10,
+    paddingVertical: 10,
+    borderRadius: 8,
     alignItems: 'center',
   },
-  buttonText: { color: '#111', fontWeight: 'bold' },
-  message: { marginTop: 15, color: '#0f0', fontSize: 14, textAlign: 'center' },
+  buttonText: { color: '#111', fontWeight: 'bold', fontSize: 14 },
+  message: { marginTop: 12, color: '#0f0', fontSize: 12, textAlign: 'center' },
 
   modalOverlay: {
     flex: 1,
@@ -329,27 +331,28 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#222',
-    padding: 20,
+    padding: 15,
     borderRadius: 10,
     width: '80%',
   },
   modalInput: {
     backgroundColor: '#333',
     color: '#fff',
-    borderRadius: 10,
-    padding: 10,
+    borderRadius: 8,
+    padding: 8,
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 15,
+    fontSize: 12,
   },
 
   cancelButton: {
     backgroundColor: '#444',
-    padding: 10,
-    borderRadius: 10,
+    paddingVertical: 7,
+    borderRadius: 8,
     alignItems: 'center',
   },
   cancelButtonText: {
     color: '#00ffcc',
-    fontSize: 14,
+    fontSize: 12,
   },
 });
